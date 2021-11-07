@@ -1,14 +1,26 @@
-import express from "express";
-const app = express();
-const port = 21370
+// libs
+import express, { Application } from 'express'
+import history from 'connect-history-api-fallback'
+import cors from 'cors'
 
-app.get( "/", ( req, res ) => {
-    res.send( 'body' );
-} );
+const app: Application = express()
+import config from './config/config'
 
-app.use(express.static('assets'))
+// require('./database/mongoose')
 
-app.listen( port, () => {
-    // tslint:disable-next-line:no-console
-    console.log( `server started at http://localhost:${ port }` );
-} );
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+// cors
+app.use(cors())
+app.options('*', cors())
+
+// apirouting
+import router from './routes/api'
+app.use('/api', router)
+
+// frontend
+app.use(history())
+app.use(express.static(__dirname + '/static'))
+
+app.listen(config.port)
