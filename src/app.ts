@@ -6,7 +6,9 @@ import cors from 'cors'
 const app: Application = express()
 import config from './config/config'
 
-// require('./database/mongoose')
+// database
+import client from './database/mysql'
+client.connect(e=>console.log('Connected!', e))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
