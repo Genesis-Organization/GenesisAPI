@@ -1,14 +1,7 @@
-import { Router, Request, Response } from 'express'
-import db from '../database/mysql'
+import { Router } from 'express'
+import GroupActions from '../actions/groups'
 const router: Router = Router()
 
-router.get('/', (req: Request, res: Response) => {
-  const sql = 'SELECT * FROM GROUPS'
-  db.query(sql, (err, results)=>{
-    if(err) throw err
-    console.log(results)
-    res.send("You shouldn't be theree" + results)
-  })
-})
+router.get('/groups', GroupActions.getGroups)
 
 export default router
