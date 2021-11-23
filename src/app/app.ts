@@ -5,7 +5,7 @@ const app: Application = express()
 
 // database
 import mongoose from 'mongoose'
-import mongoDB from '../database/config'
+import mongoDB from '@/database/config'
 mongoose.connect(mongoDB(), {}).then(() => console.log('Connected!'))
 
 app.use(express.json())
