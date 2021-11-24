@@ -1,13 +1,14 @@
-import express from 'express'
-import history from 'connect-history-api-fallback'
 import app from './app'
 import config from '@/config/config'
-import router from '@/routes/index'
+import gqlHTTP from '@/graphql'
+import middlewares from '@/middlewares/index'
+import serveApi from '@/routes/api'
+import serveStatic from '@/routes/static'
 
-app.use('/api', router)
+app.use(middlewares)
 
-// frontend
-app.use(history())
-app.use(express.static(__dirname + '@/static'))
+app.use('/api', serveApi)
+app.use('/graphql', gqlHTTP)
+app.use(serveStatic)
 
 app.listen(config.port)
