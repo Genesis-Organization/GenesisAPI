@@ -1,7 +1,7 @@
 import { graphqlHTTP } from 'express-graphql'
 import { loadSchemaSync } from '@graphql-tools/load'
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
-import { addResolversToSchema } from '@graphql-tools/schema'
+// import { addResolversToSchema } from '@graphql-tools/schema'
 import path from 'path'
 
 const schema = loadSchemaSync(path.join(__dirname, './schemas/schema.gql'), {

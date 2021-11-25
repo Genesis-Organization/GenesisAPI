@@ -70,7 +70,6 @@ class GroupActions {
   async getFormulas(req: Request, res: Response) {
     const filter: string = req.query.filter as string
     const filterInt = parseInt(filter)
-    const target = req.query.target
 
     let formulas
 
