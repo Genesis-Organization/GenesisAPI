@@ -1,11 +1,13 @@
 import { graphqlHTTP } from 'express-graphql'
-import { buildSchema, GraphQLSchema } from 'graphql'
+import { loadSchemaSync } from '@graphql-tools/load'
+import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
+import { addResolversToSchema } from '@graphql-tools/schema'
+import path from 'path'
 
-const schema: GraphQLSchema = buildSchema(`
-    type Query {
-        hello: String
-    }
-`)
+
+const schema = loadSchemaSync(path.join(__dirname, './schemas/schema.gql'), {
+  loaders: [new GraphQLFileLoader()]
+})
 
 const root = {
   hello: () => {
@@ -16,7 +18,7 @@ const root = {
 const gqlHTTP = graphqlHTTP({
   schema,
   rootValue: root,
-  graphiql: true,
+  graphiql: true
 })
 
 export default gqlHTTP

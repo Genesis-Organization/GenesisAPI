@@ -1,3 +1,6 @@
-import mongoose from 'mongoose'
+import mongoose, { ConnectOptions } from 'mongoose'
 import mongoDB from '@/database/config'
-mongoose.connect(mongoDB(), {}).then(() => console.log('Connected!'))
+
+const options: ConnectOptions = {}
+
+mongoose.connect(mongoDB(), options).then(() => console.log('Connected!'))

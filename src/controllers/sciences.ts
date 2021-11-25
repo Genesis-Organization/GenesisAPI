@@ -15,8 +15,16 @@ class GroupActions {
     res.status(200).json(science)
   }
   async getBranches(req: Request, res: Response) {
-    const branch = await BranchModel.find({})
-    res.status(200).json(branch)
+    const filter = req.query.filter
+    const value = req.query.value
+
+    if (filter && value) {
+      const branches = await BranchModel.find({filter: value})
+      res.status(200).json(branches)
+    } else {
+      const branches = await BranchModel.find({})
+      res.status(200).json(branches)
+    }
   }
   async getSubjects(req: Request, res: Response) {
     const subjects = await SubjectModel.find({})
