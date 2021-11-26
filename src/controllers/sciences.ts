@@ -10,26 +10,41 @@ import FormulaModel from '@/database/models/formula'
 
 class GroupActions {
   async getGroups(req: Request, res: Response) {
-    const group = await GroupModel.find({})
-    res.status(200).json(group)
+    const filter: string = req.query.filter as string
+    const target: string = req.query.target as string
+
+    const query = await scienceQuery(GroupModel, filter, target)
+    res.status(200).json(query)
   }
 
   async getSciences(req: Request, res: Response) {
-    const query = await scienceQuery(req, ScienceModel)
+    const filter: string = req.query.filter as string
+    const target: string = req.query.target as string
+
+    const query = await scienceQuery(ScienceModel, filter, target)
     res.status(200).json(query)
   }
 
   async getBranches(req: Request, res: Response) {
-    const query = await scienceQuery(req, BranchModel)
+    const filter: string = req.query.filter as string
+    const target: string = req.query.target as string
+
+    const query = await scienceQuery(BranchModel, filter, target)
     res.status(200).json(query)
   }
 
   async getSubjects(req: Request, res: Response) {
-    const query = await scienceQuery(req, SubjectModel)
+    const filter: string = req.query.filter as string
+    const target: string = req.query.target as string
+
+    const query = await scienceQuery(SubjectModel, filter, target)
     res.status(200).json(query)
   }
   async getFormulas(req: Request, res: Response) {
-    const query = await scienceQuery(req, FormulaModel)
+    const filter: string = req.query.filter as string
+    const target: string = req.query.target as string
+
+    const query = await scienceQuery(FormulaModel, filter, target)
     res.status(200).json(query)
   }
 }

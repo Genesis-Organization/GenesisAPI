@@ -1,10 +1,10 @@
-import { Request } from 'express'
 import { Model } from 'mongoose'
 
-const scienceQuery = async (req: Request, model: Model<object>) => {
-  const filter: string = req.query.filter as string
-  const target: string = req.query.target as string
-
+const scienceQuery = async (
+  model: Model<object>,
+  filter?: string,
+  target?: string
+) => {
   let response: object[]
 
   if (filter && target) {
