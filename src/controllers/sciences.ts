@@ -1,19 +1,13 @@
 import { Request, Response } from 'express'
 
-import scienceQuery from '@/services/scienceQuery'
+import SciencesServices from '@/services/sciences'
 
-import GroupModel from '@/database/models/group'
-import ScienceModel from '@/database/models/science'
-import BranchModel from '@/database/models/branch'
-import SubjectModel from '@/database/models/subject'
-import FormulaModel from '@/database/models/formula'
-
-class GroupActions {
+class ScienceControllers {
   async getGroups(req: Request, res: Response) {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
-    const query = await scienceQuery(GroupModel, filter, target)
+    const query = await SciencesServices.getGroups(filter, target)
     res.status(200).json(query)
   }
 
@@ -21,7 +15,7 @@ class GroupActions {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
-    const query = await scienceQuery(ScienceModel, filter, target)
+    const query = await SciencesServices.getSciences(filter, target)
     res.status(200).json(query)
   }
 
@@ -29,7 +23,7 @@ class GroupActions {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
-    const query = await scienceQuery(BranchModel, filter, target)
+    const query = await SciencesServices.getGroups(filter, target)
     res.status(200).json(query)
   }
 
@@ -37,16 +31,16 @@ class GroupActions {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
-    const query = await scienceQuery(SubjectModel, filter, target)
+    const query = await SciencesServices.getGroups(filter, target)
     res.status(200).json(query)
   }
   async getFormulas(req: Request, res: Response) {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
-    const query = await scienceQuery(FormulaModel, filter, target)
+    const query = await SciencesServices.getGroups(filter, target)
     res.status(200).json(query)
   }
 }
 
-export default new GroupActions()
+export default new ScienceControllers()
