@@ -31,7 +31,7 @@ class SciencesServices {
     //   return s
     // })
 
-    const scienceObject = sciences.map(s=>{
+    const scienceObject = sciences.map((s) => {
       s.Group = groups
       return s
     })

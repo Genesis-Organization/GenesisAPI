@@ -7,11 +7,10 @@ import serveStatic from '@/routes/static'
 
 app.use(middlewares)
 
-async function init () {
-    app.use('/api', serveApi)
-    app.use('/graphql', await gqlHTTP())
-    app.use(serveStatic)
-
+async function init() {
+  app.use('/api', serveApi)
+  app.use('/graphql', await gqlHTTP())
+  app.use(serveStatic)
 }
 
 init()

@@ -7,11 +7,11 @@ export interface Group extends Document {
 
 export interface Science extends Document {
   Group: any
-//   number | {
-//     _id: any
-//     GroupID: number
-//     GroupName: string
-//   } | object
+  //   number | {
+  //     _id: any
+  //     GroupID: number
+  //     GroupName: string
+  //   } | object
   ScienceID: number
   ScienceName: string
 }

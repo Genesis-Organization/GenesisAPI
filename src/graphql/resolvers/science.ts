@@ -1,10 +1,10 @@
-import { Resolver, Query } from "type-graphql";
+import { Resolver, Query } from 'type-graphql'
 
 @Resolver()
 class ScienceResolver {
   @Query(() => String)
   async hello() {
-    return "worldsdasdasdas KURWA DZIALA";
+    return 'worldsdasdasdas KURWA DZIALA'
   }
 }
 
