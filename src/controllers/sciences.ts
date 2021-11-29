@@ -19,28 +19,28 @@ class ScienceControllers {
     res.status(200).json(query)
   }
 
-  async getBranches(req: Request, res: Response) {
-    const filter: string = req.query.filter as string
-    const target: string = req.query.target as string
+  // async getBranches(req: Request, res: Response) {
+  //   const filter: string = req.query.filter as string
+  //   const target: string = req.query.target as string
 
-    const query = await SciencesServices.getBranches(filter, target)
-    res.status(200).json(query)
-  }
+  //   const query = await SciencesServices.getBranches(filter, target)
+  //   res.status(200).json(query)
+  // }
 
-  async getSubjects(req: Request, res: Response) {
-    const filter: string = req.query.filter as string
-    const target: string = req.query.target as string
+  // async getSubjects(req: Request, res: Response) {
+  //   const filter: string = req.query.filter as string
+  //   const target: string = req.query.target as string
 
-    const query = await SciencesServices.getSubjects(filter, target)
-    res.status(200).json(query)
-  }
-  async getFormulas(req: Request, res: Response) {
-    const filter: string = req.query.filter as string
-    const target: string = req.query.target as string
+  //   const query = await SciencesServices.getSubjects(filter, target)
+  //   res.status(200).json(query)
+  // }
+  // async getFormulas(req: Request, res: Response) {
+  //   const filter: string = req.query.filter as string
+  //   const target: string = req.query.target as string
 
-    const query = await SciencesServices.getFormulas(filter, target)
-    res.status(200).json(query)
-  }
+  //   const query = await SciencesServices.getFormulas(filter, target)
+  //   res.status(200).json(query)
+  // }
 }
 
 export default new ScienceControllers()

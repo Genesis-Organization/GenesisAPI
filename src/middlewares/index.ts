@@ -14,7 +14,7 @@ const middlewares = [
   cors(),
   // history(),
   morgan('dev'),
-  helmet(),
+  // helmet(),
   limiter,
 ]
 

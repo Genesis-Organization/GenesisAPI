@@ -1,10 +1,5 @@
-import { model, Schema, Model, Document } from 'mongoose'
-
-interface Science extends Document {
-  Group: number
-  ScienceID: number
-  ScienceName: string
-}
+import { model, Schema, Model } from 'mongoose'
+import { Science } from '@/types/sciences'
 
 const ScienceSchema: Schema = new Schema({
   Group: { type: Number, required: true },

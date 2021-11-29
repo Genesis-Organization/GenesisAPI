@@ -6,6 +6,6 @@ import routesShared from './api/shared/index'
 const router: Router = Router()
 
 // router.use(cors)
-router.use('/shared', routesShared)
+// router.use('/shared', routesShared)
 
 export default router

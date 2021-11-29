@@ -1,11 +1,6 @@
-import { model, Schema, Model, Document } from 'mongoose'
+import { model, Schema, Model } from 'mongoose'
 
-interface Formula extends Document {
-  Subject: number
-  Content: string
-  Desc: string
-  Signs: string
-}
+import { Formula } from '@/types/sciences'
 
 const FormulaSchema: Schema = new Schema({
   Subject: { type: Number, required: true },
