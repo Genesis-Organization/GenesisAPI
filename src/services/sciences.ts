@@ -8,10 +8,8 @@ import {
 
 import GroupModel from '@/database/models/group'
 import ScienceModel from '@/database/models/science'
-
 import BranchModel from '@/database/models/branch'
-
-// import SubjectModel from '@/database/models/subject'
+import SubjectModel from '@/database/models/subject'
 // import FormulaModel from '@/database/models/formula'
 
 class SciencesServices {
@@ -84,14 +82,14 @@ class SciencesServices {
 
     const scienceObjArray: ScienceObject[] = []
 
-    for (let i = 0; i < sciences.length; i++) {
+    for (const science of sciences) {
       const group = await GroupModel.findOne({})
         .where('GroupID')
-        .equals(sciences[i].Group)
+        .equals(science.Group)
 
       const o: ScienceObject = {
-        ScienceID: sciences[i].ScienceID,
-        ScienceName: sciences[i].ScienceName,
+        ScienceID: science.ScienceID,
+        ScienceName: science.ScienceName,
         Group: group,
       }
       scienceObjArray.push(o)
@@ -114,24 +112,22 @@ class SciencesServices {
 
     const branchesObjArray: BranchObject[] = []
 
-    for (let i = 0; i < branches.length; i++) {
+    for (const branch of branches) {
       const prescience = await ScienceModel.findOne({})
         .where('ScienceID')
-        .equals(branches[i].Science)
-
-      const group = await GroupModel.findOne({})
-        .where('GroupID')
-        .equals(prescience.Group)
+        .equals(branch.Science)
 
       const science: ScienceObject = {
         ScienceID: prescience.ScienceID,
         ScienceName: prescience.ScienceName,
-        Group: group,
+        Group: await GroupModel.findOne({
+          GroupID: prescience.Group,
+        }),
       }
 
       const o: BranchObject = {
-        BranchID: branches[i].BranchID,
-        BranchName: branches[i].BranchName,
+        BranchID: branch.BranchID,
+        BranchName: branch.BranchName,
         Science: science,
       }
       branchesObjArray.push(o)
@@ -150,19 +146,20 @@ class SciencesServices {
     const branchObj = await BranchModel.findOne({
       BranchName: branch,
     })
-
     if (scienceObj && branchObj) {
-      const group = await GroupModel.findOne({
-        GroupID: scienceObj.Group,
-      })
       return {
         BranchID: branchObj.BranchID,
         BranchName: branchObj.BranchName,
         Science: {
           ScienceID: scienceObj.ScienceID,
           ScienceName: scienceObj.ScienceName,
-          Group: group,
+          Group: await GroupModel.findOne({
+            GroupID: scienceObj.Group,
+          }),
         },
+        Subjects: await SubjectModel.find({
+          Branch: branchObj.BranchID,
+        }),
       }
     } else {
       return null

@@ -25,20 +25,7 @@ export interface Subject extends Document {
   SubjectName: string
 }
 
-export interface Formula extends Document {
-  ID: number
-  Name: string
-  Content: string
-  Difficulty: number
-  Signs: string
-  Unit?: Unit
-  Quantities?: Unit | Unit[]
-}
-
-interface Unit {
-  Symbol: string
-  Content: string
-}
+export type Formula = Document & FormulaObject
 
 export interface ScienceObject {
   ScienceName: string
@@ -54,4 +41,28 @@ export interface BranchObject {
   BranchName: string
   BranchID: number
   Science: ScienceObject
+  Subjects?: SubjectObject[] | (Subject & { _id: string })[]
+}
+
+export interface SubjectObject {
+  Branch: string
+  SubjectName: string
+  SubjectID: string
+  Formulas?: FormulaObject[]
+}
+
+export interface FormulaObject {
+  Subject: string
+  ID: number
+  Name: string
+  Content: string
+  Difficulty: number
+  Signs: string
+  Unit?: Unit
+  Quantities?: Unit | Unit[]
+}
+
+interface Unit {
+  Symbol: string
+  Content: string
 }
