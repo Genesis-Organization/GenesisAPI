@@ -1,10 +1,14 @@
 import { Resolver, Query } from 'type-graphql'
+import { Group } from '../schemas/sciences'
 
 @Resolver()
 class ScienceResolver {
-  @Query(() => String)
+  @Query(() => Group)
   async hello() {
-    return 'worldsdasdasdas KURWA DZIALA'
+    return {
+      ID: 0,
+      Name: 'Natural',
+    }
   }
 }
 

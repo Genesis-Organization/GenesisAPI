@@ -3,6 +3,11 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Group {
+  ID: Float!
+  Name: String!
+}
+
 type Query {
-  hello: String!
+  hello: Group!
 }

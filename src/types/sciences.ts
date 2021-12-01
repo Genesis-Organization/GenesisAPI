@@ -6,12 +6,7 @@ export interface Group extends Document {
 }
 
 export interface Science extends Document {
-  Group: any
-  //   number | {
-  //     _id: any
-  //     GroupID: number
-  //     GroupName: string
-  //   } | object
+  Group: number
   ScienceID: number
   ScienceName: string
 }
@@ -43,4 +38,20 @@ export interface Formula extends Document {
 interface Unit {
   Symbol: string
   Content: string
+}
+
+export interface ScienceObject {
+  ScienceName: string
+  ScienceID: number
+  Group: {
+    _id?: string
+    GroupID: number
+    GroupName: string
+  }
+}
+
+export interface BranchObject {
+  BranchName: string
+  BranchID: number
+  Science: ScienceObject
 }

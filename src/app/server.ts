@@ -5,13 +5,14 @@ import middlewares from '@/middlewares/index'
 import serveApi from '@/routes/api'
 import serveStatic from '@/routes/static'
 
-app.use(middlewares)
+const init = async () => {
+  app.use(middlewares)
 
-async function init() {
   app.use('/api', serveApi)
   app.use('/graphql', await gqlHTTP())
   app.use(serveStatic)
+
+  await app.listen(config.port)
 }
 
-init()
-app.listen(config.port)
+export default init

@@ -19,13 +19,13 @@ class ScienceControllers {
     res.status(200).json(query)
   }
 
-  // async getBranches(req: Request, res: Response) {
-  //   const filter: string = req.query.filter as string
-  //   const target: string = req.query.target as string
+  async getBranches(req: Request, res: Response) {
+    const filter: string = req.query.filter as string
+    const target: string = req.query.target as string
 
-  //   const query = await SciencesServices.getBranches(filter, target)
-  //   res.status(200).json(query)
-  // }
+    const query = await SciencesServices.getBranches(filter, target)
+    res.status(200).json(query)
+  }
 
   // async getSubjects(req: Request, res: Response) {
   //   const filter: string = req.query.filter as string
@@ -34,6 +34,7 @@ class ScienceControllers {
   //   const query = await SciencesServices.getSubjects(filter, target)
   //   res.status(200).json(query)
   // }
+
   // async getFormulas(req: Request, res: Response) {
   //   const filter: string = req.query.filter as string
   //   const target: string = req.query.target as string
@@ -41,6 +42,30 @@ class ScienceControllers {
   //   const query = await SciencesServices.getFormulas(filter, target)
   //   res.status(200).json(query)
   // }
+
+  async getSciencesObject(req: Request, res: Response) {
+    const filter: string = req.query.filter as string
+    const target: string = req.query.target as string
+
+    const query = await SciencesServices.getScienceObject(filter, target)
+    res.status(200).json(query)
+  }
+
+  async getBranchesObject(req: Request, res: Response) {
+    const filter: string = req.query.filter as string
+    const target: string = req.query.target as string
+
+    const query = await SciencesServices.getBranchesObject(filter, target)
+    res.status(200).json(query)
+  }
+
+  async fetchSciences(req: Request, res: Response) {
+    const science: string = req.query.science as string
+    const branch: string = req.query.branch as string
+
+    const query = await SciencesServices.fetchSciences(science, branch)
+    res.status(200).json(query)
+  }
 }
 
 export default new ScienceControllers()

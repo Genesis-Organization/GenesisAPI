@@ -2,4 +2,5 @@
 import 'module-alias/register'
 import 'reflect-metadata'
 
-import './app/server'
+import init from './app/server'
+init()
