@@ -2,6 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import cors from 'cors'
+import history from 'connect-history-api-fallback'
 
 import limiter from './limiter'
 
@@ -12,7 +13,7 @@ const middlewares = [
   json,
   urlencoded,
   cors(),
-  // history(),
+  history(),
   morgan('dev'),
   helmet(),
   limiter,
