@@ -4,12 +4,14 @@ import {
   Branch,
   BranchObject,
   ScienceObject,
+  SubjectObject,
 } from '@/types/sciences'
 
 import GroupModel from '@/database/models/group'
 import ScienceModel from '@/database/models/science'
 import BranchModel from '@/database/models/branch'
 import SubjectModel from '@/database/models/subject'
+import FormulaModel from '@/database/models/formula'
 // import FormulaModel from '@/database/models/formula'
 
 class SciencesServices {
@@ -140,12 +142,35 @@ class SciencesServices {
     science: string,
     branch: string
   ): Promise<BranchObject | null> {
+    // DB Queries
     const scienceObj = await ScienceModel.findOne({
       ScienceName: science,
     })
     const branchObj = await BranchModel.findOne({
       BranchName: branch,
     })
+    const subjects = await SubjectModel.find({
+      Branch: branchObj.BranchID,
+    })
+
+    // Creating subjects object
+    const SubjectObjArray: SubjectObject[] = []
+
+    for (const subject of subjects) {
+      const formulas = await FormulaModel.find({
+        Subject: subject.SubjectID,
+      })
+
+      const o: SubjectObject = {
+        Branch: subject.Branch,
+        SubjectID: subject.SubjectID,
+        SubjectName: subject.SubjectName,
+        Formulas: formulas,
+      }
+      SubjectObjArray.push(o)
+    }
+
+    // Creating response from objects
     if (scienceObj && branchObj) {
       return {
         BranchID: branchObj.BranchID,
@@ -157,9 +182,7 @@ class SciencesServices {
             GroupID: scienceObj.Group,
           }),
         },
-        Subjects: await SubjectModel.find({
-          Branch: branchObj.BranchID,
-        }),
+        Subjects: SubjectObjArray,
       }
     } else {
       return null
