@@ -3,4 +3,7 @@ import mongoDB from '@/database/config'
 
 const options: ConnectOptions = {}
 
-mongoose.connect(mongoDB(), options).then(() => console.log('Connected!'))
+mongoose
+  .connect(mongoDB(), options)
+  .then(() => console.log('Connected!'))
+  .catch((err) => console.log(err))
