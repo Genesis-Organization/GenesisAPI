@@ -1,5 +1,11 @@
-import { model, Schema, Model } from 'mongoose'
-import { Branch } from '@/types/sciences'
+import { model, Schema, Model, Document } from 'mongoose'
+
+interface Branch extends Document {
+  Science: number
+  BranchID: number
+  BranchName: string
+  Desc: string
+}
 
 const BranchSchema: Schema = new Schema({
   Science: { type: Number, required: true },

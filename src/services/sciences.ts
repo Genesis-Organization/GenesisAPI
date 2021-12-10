@@ -7,12 +7,11 @@ import {
   SubjectObject,
 } from '@/types/sciences'
 
-import GroupModel from '@/database/models/group'
-import ScienceModel from '@/database/models/science'
-import BranchModel from '@/database/models/branch'
-import SubjectModel from '@/database/models/subject'
-import FormulaModel from '@/database/models/formula'
-// import FormulaModel from '@/database/models/formula'
+import GroupModel from '@/database/models/sciences/group'
+import ScienceModel from '@/database/models/sciences/science'
+import BranchModel from '@/database/models/sciences/branch'
+import SubjectModel from '@/database/models/sciences/subject'
+import FormulaModel from '@/database/models/sciences/formula'
 
 class SciencesServices {
   async getGroups(

@@ -1,31 +1,29 @@
-import { Document } from 'mongoose'
-
-export interface Group extends Document {
+export interface Group {
   GroupID: number
   GroupName: string
 }
 
-export interface Science extends Document {
+export interface Science {
   Group: number
   ScienceID: number
   ScienceName: string
 }
 
-export interface Branch extends Document {
+export interface Branch {
   Science: number
   BranchID: number
   BranchName: string
   Desc: string
 }
 
-export interface Subject extends Document {
+export interface Subject {
   Science: number
   Branch: number
   SubjectID: number
   SubjectName: string
 }
 
-export interface Formula extends Document {
+export interface Formula {
   Subject: number
   ID: number
   Name: string
