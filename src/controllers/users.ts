@@ -15,8 +15,11 @@ class UsersControllers {
       Password: req.body.Password,
     }
     try {
-      const query = await UserServices.Register(userData)
-      res.status(200).send(query)
+      const isValid = await UserServices.Validate(userData)
+      if (isValid === true) {
+        const query = await UserServices.Register(userData)
+        res.status(200).send(query)
+      }
     } catch (e) {
       res.status(422).send(e.message)
     }

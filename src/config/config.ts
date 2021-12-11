@@ -1,14 +1,11 @@
-import * as dotenv from 'dotenv'
-dotenv.config()
+import server from './server'
+import database from './database'
+import session from './session'
 
 const config = {
-  port: process.env.PORT,
-  database: {
-    host: process.env.DBHOST,
-    user: process.env.DBUSERNAME,
-    password: process.env.DBPASSWORD,
-    database: process.env.DATABASE,
-  },
+  server,
+  database,
+  session,
 }
 
 export default config

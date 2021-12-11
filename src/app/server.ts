@@ -12,7 +12,7 @@ const init = async () => {
   app.use('/graphql', await gqlHTTP())
   app.use(serveStatic)
 
-  await app.listen(config.port)
+  await app.listen(config.server.port)
 }
 
 export default init
