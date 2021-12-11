@@ -47,6 +47,7 @@
     "graphql": "^15.7.2",
     "graphql-import-node": "^0.0.4",
     "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.2",
     "mongoose": "^6.0.13",
     "morgan": "^1.10.0",

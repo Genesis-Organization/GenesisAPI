@@ -4,10 +4,10 @@ import { UserRegisterReq } from '@/types/users'
 
 class UsersServices {
   async Validate(userData: UserRegisterReq) {
-    const sameLogin = await UserModel.find({ Login: userData.Login })
-    const sameEmail = await UserModel.find({ Email: userData.Email })
-    if (sameLogin.length === 0) {
-      if (sameEmail.length === 0) {
+    const existsLogin = await UserModel.exists({ Login: userData.Login })
+    const existsEmail = await UserModel.exists({ Email: userData.Email })
+    if (existsLogin === false) {
+      if (existsEmail === false) {
         return true
       } else {
         throw new Error('email-exist')
@@ -30,8 +30,8 @@ class UsersServices {
       throw new Error(e)
     }
   }
-  async Login() {
-    return 'a'
+  async Login(user: any) {
+    return user
   }
 }
 

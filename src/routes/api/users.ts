@@ -5,7 +5,7 @@ const UsersRouter: Router = Router()
 
 // eslint-disable-next-line
 UsersRouter
-  .post('/login', UsersControllers.Login)
   .post('/register', UsersControllers.Register)
+  .post('/login', UsersControllers.Login)
 
 export default UsersRouter

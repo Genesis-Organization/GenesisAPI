@@ -15,17 +15,20 @@ class UsersControllers {
       Password: req.body.Password,
     }
     try {
-      const isValid = await UserServices.Validate(userData)
-      if (isValid === true) {
-        const query = await UserServices.Register(userData)
-        res.status(200).send(query)
-      }
+      const query = await UserServices.Register(userData)
+      res.status(200).send(query)
     } catch (e) {
       res.status(422).send(e.message)
     }
   }
   async Login(req: Request, res: Response) {
-    const query = await UserServices.Login()
+    const Login = req.body.Login
+    const Password = req.body.Password
+    const userData = {
+      Login,
+      Password,
+    }
+    const query = await UserServices.Login(userData)
     res.send(query)
   }
 }

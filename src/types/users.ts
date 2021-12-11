@@ -1,3 +1,5 @@
+import { Types } from 'mongoose'
+
 export interface UserRegisterReq {
   Name: string
   Surname: string
@@ -9,6 +11,7 @@ export interface UserRegisterReq {
 }
 
 export interface User {
+  _id: Types.ObjectId
   Name: string
   Surname: string
   Login: string
