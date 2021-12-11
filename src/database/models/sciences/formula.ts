@@ -1,14 +1,33 @@
-import { model, Schema, Model } from 'mongoose'
+import { prop, getModelForClass } from '@typegoose/typegoose'
 
-import { Formula } from '@/types/sciences'
+class Formula {
+  @prop()
+  public Subject?: number
 
-const FormulaSchema: Schema = new Schema({
-  Subject: { type: Number, required: true },
-  Content: { type: String, required: true },
-  Desc: { type: String, required: true },
-  Signs: { type: String, required: true },
-})
+  @prop()
+  public ID?: number
 
-const FormulaModel: Model<Formula> = model('Formulas', FormulaSchema)
+  @prop()
+  public Name?: string
+
+  @prop()
+  public Content?: string
+
+  @prop()
+  public Difficulty?: number
+
+  @prop()
+  public Unit?: string
+
+  @prop()
+  public Quantities?: Quantity | Quantity[]
+}
+
+interface Quantity {
+  Symbol: string
+  Content: string
+}
+
+const FormulaModel = getModelForClass(Formula)
 
 export default FormulaModel

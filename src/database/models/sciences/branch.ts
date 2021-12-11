@@ -1,19 +1,21 @@
-import { model, Schema, Model, Document } from 'mongoose'
+import { prop, modelOptions, getModelForClass } from '@typegoose/typegoose'
+import * as mongoose from 'mongoose'
 
-interface Branch extends Document {
-  Science: number
-  BranchID: number
-  BranchName: string
-  Desc: string
+@modelOptions({ existingMongoose: mongoose })
+class Branch {
+  @prop()
+  public Science?: number
+
+  @prop()
+  public BranchID?: number
+
+  @prop()
+  public BranchName?: string
+
+  @prop()
+  public Desc?: string
 }
 
-const BranchSchema: Schema = new Schema({
-  Science: { type: Number, required: true },
-  BranchID: { type: Number, required: true },
-  BranchName: { type: String, required: true },
-  Desc: { type: String, required: true },
-})
-
-const BranchModel: Model<Branch> = model('Branches', BranchSchema)
+const BranchModel = getModelForClass(Branch)
 
 export default BranchModel

@@ -1,15 +1,13 @@
-import { model, Schema, Model, Document } from 'mongoose'
+import { prop, getModelForClass } from '@typegoose/typegoose'
 
-interface Group extends Document {
-  GroupID: number
-  GroupName: string
+class Group {
+  @prop()
+  public GroupID?: number
+
+  @prop()
+  public GroupName?: string
 }
 
-const GroupSchema: Schema = new Schema({
-  GroupID: { type: Number, required: true },
-  GroupName: { type: String, required: true },
-})
-
-const GroupModel: Model<Group> = model('Groups', GroupSchema)
+const GroupModel = getModelForClass(Group)
 
 export default GroupModel

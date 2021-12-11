@@ -14,27 +14,21 @@ import SubjectModel from '@/database/models/sciences/subject'
 import FormulaModel from '@/database/models/sciences/formula'
 
 class SciencesServices {
-  async getGroups(
-    filter?: string,
-    target?: string
-  ): Promise<(Group & { _id: string })[]> {
+  async getGroups(filter?: string, target?: string): Promise<Group[]> {
     if (filter && target) {
-      const response = await GroupModel.find({}).where(target).equals(filter)
+      const response = await GroupModel.find().where(target).equals(filter)
       return response
     } else {
-      const response = await GroupModel.find({})
+      const response = await GroupModel.find()
       return response
     }
   }
-  async getSciences(
-    filter?: string,
-    target?: string
-  ): Promise<(Science & { _id: string })[]> {
+  async getSciences(filter?: string, target?: string): Promise<Science[]> {
     if (filter && target) {
       const response = await ScienceModel.find({}).where(target).equals(filter)
       return response
     } else {
-      const response = await ScienceModel.find({})
+      const response = await ScienceModel.find()
       return response
     }
   }
@@ -89,8 +83,8 @@ class SciencesServices {
         .equals(science.Group)
 
       const o: ScienceObject = {
-        ScienceID: science.ScienceID,
-        ScienceName: science.ScienceName,
+        ScienceID: science?.ScienceID,
+        ScienceName: science?.ScienceName,
         Group: group,
       }
       scienceObjArray.push(o)

@@ -1,17 +1,16 @@
-import { model, Schema, Model, Document } from 'mongoose'
+import { prop, getModelForClass } from '@typegoose/typegoose'
 
-interface Science extends Document {
-  Group: number
-  ScienceID: number
-  ScienceName: string
+class Science {
+  @prop()
+  public Group?: number
+
+  @prop()
+  public ScienceID?: number
+
+  @prop()
+  public ScienceName?: string
 }
 
-const ScienceSchema: Schema = new Schema({
-  Group: { type: Number, required: true },
-  ScienceID: { type: Number, required: true },
-  ScienceName: { type: String, required: true },
-})
-
-const ScienceModel: Model<Science> = model('Sciences', ScienceSchema)
+const ScienceModel = getModelForClass(Science)
 
 export default ScienceModel
