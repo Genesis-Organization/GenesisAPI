@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 import UserServices from '@/services/users'
-import { UserRegisterReq } from '@/types/users'
+import { UserLoginReq, UserRegisterReq } from '@/types/users'
 
 class UsersControllers {
   async Register(req: Request, res: Response) {
@@ -24,12 +24,16 @@ class UsersControllers {
   async Login(req: Request, res: Response) {
     const Login = req.body.Login
     const Password = req.body.Password
-    const userData = {
+    const userData: UserLoginReq = {
       Login,
       Password,
     }
-    const query = await UserServices.Login(userData)
-    res.send(query)
+    try {
+      const query = await UserServices.Login(userData)
+      res.send(query)
+    } catch (e) {
+      res.status(422).send(e.message)
+    }
   }
 }
 

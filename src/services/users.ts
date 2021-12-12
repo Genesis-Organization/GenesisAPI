@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import UserModel from '@/database/models/users/user'
-import { UserRegisterReq } from '@/types/users'
+import { UserLoginReq, UserRegisterReq } from '@/types/users'
 
 class UsersServices {
   async Validate(userData: UserRegisterReq) {
@@ -30,8 +30,23 @@ class UsersServices {
       throw new Error(e)
     }
   }
-  async Login(user: any) {
-    return user
+  async Login(loginReq: UserLoginReq) {
+    const user = await UserModel.findOne({
+      Login: loginReq.Login,
+    })
+    if (user) {
+      const isPasswordCorrect = await bcrypt.compare(
+        loginReq.Password,
+        user.Password
+      )
+      if (isPasswordCorrect === true) {
+        return user
+      } else {
+        throw new Error('wrong-password')
+      }
+    } else {
+      throw new Error('wrong-data')
+    }
   }
 }
 

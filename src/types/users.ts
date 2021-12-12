@@ -1,5 +1,10 @@
 import { Types } from 'mongoose'
 
+export interface UserLoginReq {
+  Login: string
+  Password: string
+}
+
 export interface UserRegisterReq {
   Name: string
   Surname: string
