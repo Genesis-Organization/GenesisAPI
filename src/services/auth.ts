@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt'
 import UserModel from '@/database/models/users/user'
-import { UserLoginReq, UserRegisterReq } from '@/types/users'
+import { UserLoginReq, UserRegisterReq } from '@/types/auth'
 
-class UsersServices {
+class AuthServices {
   async Validate(userData: UserRegisterReq) {
     const existsLogin = await UserModel.exists({ Login: userData.Login })
     const existsEmail = await UserModel.exists({ Email: userData.Email })
@@ -22,7 +22,9 @@ class UsersServices {
       if (isValid === true) {
         const User = new UserModel(userData)
 
-        User.Password = await bcrypt.hash(userData.Password, 10)
+        const salt = await bcrypt.genSalt()
+        User.Password = await bcrypt.hash(userData.Password, salt)
+
         await User.save()
         return User
       }
@@ -50,4 +52,4 @@ class UsersServices {
   }
 }
 
-export default new UsersServices()
+export default new AuthServices()

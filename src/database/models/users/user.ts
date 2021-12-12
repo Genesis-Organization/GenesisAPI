@@ -1,4 +1,5 @@
 import { prop, getModelForClass } from '@typegoose/typegoose'
+import Validator from 'validator'
 
 class User {
   @prop({ required: true })
@@ -7,10 +8,10 @@ class User {
   @prop({ required: true })
   public Surname!: string
 
-  @prop({ required: true })
+  @prop({ required: true, minlength: 5 })
   public Login!: string
 
-  @prop({ required: true })
+  @prop({ required: true, validate: [Validator.isEmail, 'incorrect-email'] })
   public Email!: string
 
   @prop({ required: true })

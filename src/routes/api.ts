@@ -1,13 +1,11 @@
 import { Router } from 'express'
 
 import SciencesRouter from './api/sciences'
-import UsersRouter from './api/users'
-// import cors from '@/middlewares/cors'
+import AuthRouter from './api/auth'
 
 const router: Router = Router()
-// router.use(cors)
 
 router.use('/sciences', SciencesRouter)
-router.use('/users', UsersRouter)
+router.use('/users', AuthRouter)
 
 export default router

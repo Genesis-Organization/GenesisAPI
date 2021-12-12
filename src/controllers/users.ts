@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
 
-import UserServices from '@/services/users'
-import { UserLoginReq, UserRegisterReq } from '@/types/users'
+import AuthServices from '@/services/auth'
+import { UserLoginReq, UserRegisterReq } from '@/types/auth'
 
-class UsersControllers {
+class AuthControllers {
   async Register(req: Request, res: Response) {
     const userData: UserRegisterReq = {
       Name: req.body.Name,
@@ -15,7 +15,7 @@ class UsersControllers {
       Password: req.body.Password,
     }
     try {
-      const query = await UserServices.Register(userData)
+      const query = await AuthServices.Register(userData)
       res.status(200).send(query)
     } catch (e) {
       res.status(422).send(e.message)
@@ -29,7 +29,8 @@ class UsersControllers {
       Password,
     }
     try {
-      const query = await UserServices.Login(userData)
+      const query = await AuthServices.Login(userData)
+      res.cookie('isWorking', true)
       res.send(query)
     } catch (e) {
       res.status(422).send(e.message)
@@ -37,4 +38,4 @@ class UsersControllers {
   }
 }
 
-export default new UsersControllers()
+export default new AuthControllers()

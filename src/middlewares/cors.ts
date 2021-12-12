@@ -1,7 +1,9 @@
 import cors, { CorsOptions } from 'cors'
 import { CustomOrigin, StaticOrigin } from '@/types/cors'
+import config from '@/config/config'
 
 const whitelist: string[] = [
+  'http://localhost:80',
   'http://localhost:4000',
   'http://localhost:2224',
   'https://genesis.mslotwinski.eu/',
@@ -29,7 +31,12 @@ const origin: CustomOrigin = (
 
 const corsOptions: CorsOptions = {
   allowedHeaders,
+  credentials: true,
   origin,
+}
+
+if (config.server.mode !== 'DEV') {
+  corsOptions.origin = origin
 }
 
 export default cors(corsOptions)
