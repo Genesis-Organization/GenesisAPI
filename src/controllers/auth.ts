@@ -18,7 +18,6 @@ class AuthControllers {
       const user = await AuthServices.Register(userData)
       const token = await AuthServices.CreateToken(user._id)
       res.cookie('jwt', token, {
-        httpOnly: true,
         maxAge: Number(config.jwt.expiresIn),
       })
       res.status(201).json({ user: user._id })
@@ -37,7 +36,6 @@ class AuthControllers {
       const user = await AuthServices.Login(userData)
       const token = await AuthServices.CreateToken(user._id)
       res.cookie('jwt', token, {
-        httpOnly: true,
         maxAge: Number(config.jwt.expiresIn),
       })
       res.status(200).json({ user: user._id })
@@ -49,7 +47,7 @@ class AuthControllers {
     res.cookie('jwt', '', {
       maxAge: 1,
     })
-    res.status(200).send('hello, how are you?')
+    res.status(200).send('Hello, how are you?')
   }
 }
 
