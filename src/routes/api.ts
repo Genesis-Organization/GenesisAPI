@@ -6,6 +6,6 @@ import AuthRouter from './api/auth'
 const router: Router = Router()
 
 router.use('/sciences', SciencesRouter)
-router.use('/users', AuthRouter)
+router.use('/auth', AuthRouter)
 
 export default router

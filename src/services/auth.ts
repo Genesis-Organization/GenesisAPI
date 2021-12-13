@@ -53,7 +53,7 @@ class AuthServices {
   }
   async CreateToken(id: string) {
     return jwt.sign({ id }, config.jwt.secret, {
-      expiresIn: 1000 * 60 * 60 * 24 * 21,
+      expiresIn: config.jwt.expiresIn,
     })
   }
 }

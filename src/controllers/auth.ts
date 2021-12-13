@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-
+import config from '@/config/auth'
 import AuthServices from '@/services/auth'
 import { UserLoginReq, UserRegisterReq } from '@/types/auth'
 
@@ -19,7 +19,7 @@ class AuthControllers {
       const token = await AuthServices.CreateToken(user._id)
       res.cookie('jwt', token, {
         httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 24 * 21,
+        maxAge: Number(config.jwt.expiresIn),
       })
       res.status(201).json({ user: user._id })
     } catch (e) {
@@ -38,12 +38,18 @@ class AuthControllers {
       const token = await AuthServices.CreateToken(user._id)
       res.cookie('jwt', token, {
         httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 24 * 21,
+        maxAge: Number(config.jwt.expiresIn),
       })
       res.status(200).json({ user: user._id })
     } catch (e) {
       res.status(422).send(e.message)
     }
+  }
+  async Logout(req: Request, res: Response) {
+    res.cookie('jwt', '', {
+      maxAge: 1,
+    })
+    res.status(200).send('hello, how are you?')
   }
 }
 
