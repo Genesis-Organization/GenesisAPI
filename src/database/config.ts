@@ -1,15 +1,15 @@
-import config from '@/config/config'
+import config from '@/config/database'
 
 const mongoDB = (): string => {
   return (
     'mongodb://' +
-    config.database.user +
+    config.user +
     ':' +
-    config.database.password +
+    config.password +
     '@' +
-    config.database.host +
+    config.host +
     '/' +
-    config.database.database
+    config.database
   )
 }
 

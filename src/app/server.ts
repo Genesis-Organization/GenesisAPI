@@ -1,5 +1,5 @@
 import app from './app'
-import config from '@/config/config'
+import config from '@/config/server'
 import gqlHTTP from '@/graphql'
 import middlewares from '@/middlewares/index'
 import serveApi from '@/routes/api'
@@ -46,7 +46,7 @@ const init = async () => {
   app.use('/graphql', await gqlHTTP())
   app.use(serveStatic)
 
-  await app.listen(config.server.port)
+  await app.listen(config.port)
 }
 
 export default init

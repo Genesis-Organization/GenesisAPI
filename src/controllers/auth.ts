@@ -15,8 +15,13 @@ class AuthControllers {
       Password: req.body.Password,
     }
     try {
-      const query = await AuthServices.Register(userData)
-      res.status(200).send(query)
+      const user = await AuthServices.Register(userData)
+      const token = await AuthServices.CreateToken(user._id)
+      res.cookie('jwt', token, {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 21,
+      })
+      res.status(201).json({ user: user._id })
     } catch (e) {
       res.status(422).send(e.message)
     }
@@ -29,9 +34,13 @@ class AuthControllers {
       Password,
     }
     try {
-      const query = await AuthServices.Login(userData)
-      res.cookie('isWorking', true)
-      res.send(query)
+      const user = await AuthServices.Login(userData)
+      const token = await AuthServices.CreateToken(user._id)
+      res.cookie('jwt', token, {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 21,
+      })
+      res.status(200).json({ user: user._id })
     } catch (e) {
       res.status(422).send(e.message)
     }

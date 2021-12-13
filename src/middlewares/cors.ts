@@ -1,6 +1,6 @@
 import cors, { CorsOptions } from 'cors'
 import { CustomOrigin, StaticOrigin } from '@/types/cors'
-import config from '@/config/config'
+import config from '@/config/server'
 
 const whitelist: string[] = [
   'http://localhost:80',
@@ -35,7 +35,7 @@ const corsOptions: CorsOptions = {
   origin,
 }
 
-if (config.server.mode !== 'DEV') {
+if (config.mode !== 'DEV') {
   corsOptions.origin = origin
 }
 

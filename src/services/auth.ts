@@ -1,4 +1,6 @@
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import config from '@/config/auth'
 import UserModel from '@/database/models/users/user'
 import { UserLoginReq, UserRegisterReq } from '@/types/auth'
 
@@ -20,13 +22,12 @@ class AuthServices {
     try {
       const isValid = await this.Validate(userData)
       if (isValid === true) {
-        const User = new UserModel(userData)
-
+        const newUser = new UserModel(userData)
         const salt = await bcrypt.genSalt()
-        User.Password = await bcrypt.hash(userData.Password, salt)
+        newUser.Password = await bcrypt.hash(userData.Password, salt)
 
-        await User.save()
-        return User
+        const userResponse = await newUser.save()
+        return userResponse
       }
     } catch (e) {
       throw new Error(e)
@@ -49,6 +50,11 @@ class AuthServices {
     } else {
       throw new Error('wrong-data')
     }
+  }
+  async CreateToken(id: string) {
+    return jwt.sign({ id }, config.jwt.secret, {
+      expiresIn: 1000 * 60 * 60 * 24 * 21,
+    })
   }
 }
 
