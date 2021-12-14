@@ -13,10 +13,12 @@ class AuthControllers {
       DateOfBirth: req.body.DateOfBirth,
       Degree: req.body.Degree,
       Password: req.body.Password,
+      avatarFileID: 'default',
+      bannerFileID: 'default',
     }
     try {
       const user = await AuthServices.Register(userData)
-      const token = await AuthServices.CreateToken(user._id)
+      const token = await AuthServices.CreateToken(user)
       res.cookie('jwt', token, {
         maxAge: Number(config.jwt.expiresIn),
       })
@@ -34,7 +36,7 @@ class AuthControllers {
     }
     try {
       const user = await AuthServices.Login(userData)
-      const token = await AuthServices.CreateToken(user._id)
+      const token = await AuthServices.CreateToken(user)
       res.cookie('jwt', token, {
         maxAge: Number(config.jwt.expiresIn),
       })

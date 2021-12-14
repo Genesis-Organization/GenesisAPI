@@ -2,8 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
-// import history from 'connect-history-api-fallback'
-import passport from 'passport'
+import history from 'connect-history-api-fallback'
 
 import session from './config/session'
 import cors from '@/middlewares/config/cors'
@@ -18,12 +17,10 @@ const middlewares = [
   urlencoded,
   cookieParser(),
   cors,
-  // history(),
+  history(),
   morgan('dev'),
   helmet(),
   limiter,
-  passport.initialize(),
-  passport.session(),
 ]
 
 export default middlewares

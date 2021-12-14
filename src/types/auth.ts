@@ -11,4 +11,7 @@ export interface UserRegisterReq {
   DateOfBirth: string
   Degree: string
   Password: string
+
+  avatarFileID?: string
+  bannerFileID?: string
 }

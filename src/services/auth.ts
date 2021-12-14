@@ -51,8 +51,8 @@ class AuthServices {
       throw new Error('wrong-data')
     }
   }
-  async CreateToken(id: string) {
-    return jwt.sign({ id }, config.jwt.secret, {
+  async CreateToken(user: string | object) {
+    return jwt.sign({ user }, config.jwt.secret, {
       expiresIn: config.jwt.expiresIn,
     })
   }

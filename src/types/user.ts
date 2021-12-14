@@ -13,3 +13,15 @@ export interface User {
   avatarFileID?: string
   bannerFileID?: string
 }
+
+export interface UserQueryResponse {
+  Name: string
+  Surname: string
+  Login: string
+  Email: string
+  DateOfBirth: string
+  Degree: string
+
+  avatarFileID?: string
+  bannerFileID?: string
+}
