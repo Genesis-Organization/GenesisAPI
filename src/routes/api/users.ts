@@ -5,6 +5,6 @@ const UsersRouter: Router = Router()
 
 // eslint-disable-next-line
 UsersRouter
-  .get('/users/:id', UsersControllers.getUserInfo)
+  .get('/:id', UsersControllers.getUserInfo)
 
 export default UsersRouter
