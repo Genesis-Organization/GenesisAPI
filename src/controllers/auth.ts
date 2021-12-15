@@ -15,6 +15,8 @@ class AuthControllers {
       Password: req.body.Password,
       avatarFileID: 'default',
       bannerFileID: 'default',
+      isEmailPublic: false,
+      isAgePublic: false,
     }
     try {
       const user = await AuthServices.Register(userData)

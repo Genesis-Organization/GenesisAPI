@@ -14,4 +14,7 @@ export interface UserRegisterReq {
 
   avatarFileID?: string
   bannerFileID?: string
+
+  isEmailPublic?: boolean
+  isAgePublic?: boolean
 }
