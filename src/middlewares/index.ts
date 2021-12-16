@@ -4,7 +4,6 @@ import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
 import history from 'connect-history-api-fallback'
 
-import cors from '@/middlewares/config/cors'
 import limiter from './config/limiter'
 
 const json = express.json()
@@ -14,7 +13,6 @@ const middlewares = [
   json,
   urlencoded,
   cookieParser(),
-  cors,
   history(),
   morgan('dev'),
   helmet(),

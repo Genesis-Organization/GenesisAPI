@@ -83,8 +83,8 @@ class SciencesServices {
         .equals(science.Group)
 
       const o: ScienceObject = {
-        ScienceID: science?.ScienceID,
-        ScienceName: science?.ScienceName,
+        ScienceID: science.ScienceID,
+        ScienceName: science.ScienceName,
         Group: group,
       }
       scienceObjArray.push(o)
