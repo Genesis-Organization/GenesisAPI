@@ -5,7 +5,13 @@ import {
   getModelForClass,
   Severity,
 } from '@typegoose/typegoose'
-import { University, SocialMedia } from '@/types/user'
+import {
+  University,
+  SocialMedia,
+  ResearchInterest,
+  Research,
+  Work,
+} from '@/types/user'
 
 @modelOptions({ options: { allowMixed: Severity.ALLOW } })
 class User {
@@ -46,13 +52,27 @@ class User {
   @prop()
   public isAgePublic?: boolean
 
-  // OPTIONAL
+  @prop()
+  public isGenesisMember?: boolean
 
   @prop()
-  public description?: string
+  public isProtected?: boolean
+
+  @prop()
+  public isSponsor?: boolean
+
+  // OPTIONAL
+  @prop()
+  public researchInterests?: ResearchInterest[]
 
   @prop()
   public education?: University[]
+
+  @prop()
+  public research?: Research[]
+
+  @prop()
+  public description?: string
 
   @prop()
   public socialMedias?: SocialMedia[]
@@ -64,7 +84,7 @@ class User {
   public country?: string
 
   @prop()
-  public work?: string
+  public work?: Work[]
 
   @prop()
   public interests?: string[]
