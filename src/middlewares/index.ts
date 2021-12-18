@@ -3,6 +3,7 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
 import history from 'connect-history-api-fallback'
+import cors from './config/cors'
 
 import limiter from './config/limiter'
 
@@ -13,6 +14,7 @@ const middlewares = [
   json,
   urlencoded,
   cookieParser(),
+  cors,
   history(),
   morgan('dev'),
   helmet(),

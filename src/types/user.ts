@@ -46,6 +46,7 @@ export interface Work {
 }
 
 export interface University {
+  university: string
   science: string
   degree: string
   specialization?: string
