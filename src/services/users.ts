@@ -1,4 +1,5 @@
 import UserModel from '@/database/models/users/user'
+import AuthServices from './auth'
 import { UserQueryResponse } from '@/types/user'
 
 class UsersServices {
@@ -32,6 +33,13 @@ class UsersServices {
       }
       return safeUserData
     } else return null
+  }
+  async changeDescription(login: string, description: string) {
+    const user = await UserModel.findOne({ Login: login })
+    user.description = description
+    user.save()
+    const token = AuthServices.CreateToken(user)
+    return token
   }
 }
 
