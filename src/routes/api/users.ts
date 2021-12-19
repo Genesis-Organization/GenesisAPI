@@ -7,5 +7,6 @@ const UsersRouter: Router = Router()
 UsersRouter
   .get('/:id', UsersControllers.getUserInfo)
   .put('/desc/:id', UsersControllers.changeDescription)
+  .put('/interests/:id', UsersControllers.changeInterests)
 
 export default UsersRouter

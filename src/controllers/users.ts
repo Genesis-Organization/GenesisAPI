@@ -29,6 +29,21 @@ class UsersController {
       res.status(403).send(err)
     }
   }
+  async changeInterests(req: Request, res: Response) {
+    const login = req.params.id
+    const token = req.body.token
+    const interests = req.body.interests
+    try {
+      await jwt.verify(token, config.jwt.secret)
+      const newToken = await UsersServices.changeInterests(login, interests)
+      res.cookie('jwt', newToken, {
+        maxAge: Number(config.jwt.expiresIn),
+      })
+      res.status(200).send(newToken)
+    } catch (err) {
+      res.status(403).send(err)
+    }
+  }
 }
 
 export default new UsersController()
