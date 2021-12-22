@@ -5,6 +5,8 @@ import serveApi from '@/routes/api'
 import serveStatic from '@/routes/static'
 
 const init = async () => {
+  app.disable('etag')
+
   app.use(middlewares)
   app.use(serveStatic)
   app.use('/api', serveApi)

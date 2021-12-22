@@ -12,7 +12,4 @@ SciencesRouter
   .get('/branchesobj', ScienceControllers.getBranchesObject)
   .get('/fetchsciences', ScienceControllers.fetchSciences)
 
-// .get('/subjects', ScienceControllers.getSubjects)
-// .get('/formulas', ScienceControllers.getFormulas)
-
 export default SciencesRouter
