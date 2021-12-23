@@ -3,8 +3,9 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
 import history from 'connect-history-api-fallback'
-import cors from './config/cors'
 
+import config from '@/config/server'
+import cors from './config/cors'
 import limiter from './config/limiter'
 
 const json = express.json()
@@ -16,9 +17,10 @@ const middlewares = [
   cookieParser(),
   cors,
   history(),
-  morgan('dev'),
   helmet(),
   limiter,
 ]
+
+config.mode == 'DEV' && middlewares.push(morgan('dev'))
 
 export default middlewares

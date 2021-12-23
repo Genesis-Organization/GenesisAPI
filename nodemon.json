@@ -1,0 +1,6 @@
+{
+    "watch": ["src", ".env"],
+    "ext": "ts,json",
+    "ignore": ["src/**/*.spec.ts"],
+    "exec": "npm run lint && ts-node ./src/app.ts"
+}

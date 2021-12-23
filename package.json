@@ -5,11 +5,14 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
-    "watch": "tsc --watch",
-    "start": "nodemon --exec \"npm run lint && node dist/app\"",
+    "start": "nodemon",
+    "start:prod": "set MODE=DEV && nodemon dist/app",
     "test": "jest",
     "lint": "eslint ./src",
     "format": "eslint ./ --fix"
+  },
+  "_moduleAliases": {
+    "@": "src/"
   },
   "repository": {
     "type": "git",
@@ -67,8 +70,5 @@
     "nodemon": "^2.0.15",
     "prettier": "^2.4.1",
     "ts-jest": "^27.1.2"
-  },
-  "_moduleAliases": {
-    "@": "dist/"
   }
 }
