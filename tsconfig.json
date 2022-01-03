@@ -10,6 +10,7 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "sourceMap": true,
+        "noEmit": true,
 
         "lib": ["es2018", "esnext.asynciterable"],
 
@@ -17,12 +18,14 @@
         "baseUrl": ".",
 
         "paths": {
-            "@/*": [
-              "src/*"
-            ],
+            "@/*": ["src/*"]
         }
     },
     "include": [
-        "src"
+        "src",
+        "test"
+    ],
+    "exclude": [
+        "node_modules"
     ]
 }
