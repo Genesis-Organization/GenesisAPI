@@ -4,8 +4,7 @@ import ScienceControllers from '@/controllers/sciences'
 const SciencesRouter: Router = Router()
 
 // eslint-disable-next-line
-SciencesRouter
-  .get('/groups', ScienceControllers.getGroups)
+SciencesRouter.get('/groups', ScienceControllers.getGroups)
   .get('/sciences', ScienceControllers.getSciences)
   .get('/branches', ScienceControllers.getBranches)
   .get('/sciencseobj', ScienceControllers.getSciencesObject)

@@ -27,8 +27,8 @@ npm start
 
 👤 **Mateusz Słotwiński**
 
-* Website: mslotwinski.eu
-* Github: [@Paprotka2137](https://github.com/Paprotka2137)
+- Website: mslotwinski.eu
+- Github: [@Paprotka2137](https://github.com/Paprotka2137)
 
 ## Show your support
 
@@ -39,4 +39,4 @@ Give a ⭐️ if this project helped you!
 Copyright © 2021 [Mateusz Słotwiński](https://github.com/Paprotka2137).<br />
 This project is [MIT](opensource.org/licenses/MIT) licensed.
 
-***
+---
