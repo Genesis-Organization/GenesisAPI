@@ -1,4 +1,4 @@
-import request from 'supertest'
+import { expect, request } from '>>/globals'
 import createServer from '@/server'
 
 describe('GET sciences/groups', () => {

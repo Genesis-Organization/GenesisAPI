@@ -13,20 +13,22 @@
     "sourceMap": true,
     "noEmit": true,
 
+    "types": [
+      "node",
+      "cypress",
+      "jest",
+    ],
+
     "lib": ["es2018", "esnext.asynciterable"],
 
     "outDir": "dist",
     "baseUrl": ".",
 
-    "types": [
-      "jest",
-      "cypress"
-    ],
-
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      ">>/*": ["tests/*"]
     }
   },
-  "include": ["src", "tests"],
+  "include": ["src/**/*.ts", "tests/**/*.ts"],
   "exclude": ["node_modules"]
 }
