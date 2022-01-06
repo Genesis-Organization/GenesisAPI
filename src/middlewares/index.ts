@@ -5,8 +5,8 @@ import cookieParser from 'cookie-parser'
 import history from 'connect-history-api-fallback'
 
 import config from '@/config/server'
-import cors from './config/cors'
 import limiter from './config/limiter'
+import cors from 'cors'
 
 const json = express.json()
 const urlencoded = express.urlencoded({ extended: true })
@@ -15,7 +15,7 @@ const middlewares = [
   json,
   urlencoded,
   cookieParser(),
-  cors,
+  cors(),
   history(),
   helmet(),
   limiter,

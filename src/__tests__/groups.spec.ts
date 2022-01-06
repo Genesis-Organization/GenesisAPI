@@ -1,5 +1,5 @@
 import request from 'supertest'
-import createServer from '../../../src/server'
+import createServer from '../server'
 
 describe('GET sciences/groups', () => {
   it('should respond with a 200 status code', async () => {

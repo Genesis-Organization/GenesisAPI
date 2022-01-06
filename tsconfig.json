@@ -1,31 +1,27 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "esnext",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
 
-        "moduleResolution": "node",
+    "moduleResolution": "node",
 
-        "esModuleInterop": true,
-        "noImplicitAny": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "sourceMap": true,
-        "noEmit": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "noEmit": true,
 
-        "lib": ["es2018", "esnext.asynciterable"],
+    "lib": ["es2018", "esnext.asynciterable"],
 
-        "outDir": "dist",
-        "baseUrl": ".",
+    "outDir": "dist",
+    "baseUrl": ".",
 
-        "paths": {
-            "@/*": ["src/*"]
-        }
-    },
-    "include": [
-        "src",
-        "test"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src", "test"],
+  "exclude": ["node_modules"]
 }
