@@ -18,6 +18,11 @@
     "outDir": "dist",
     "baseUrl": ".",
 
+    "types": [
+      "jest",
+      "cypress"
+    ],
+
     "paths": {
       "@/*": ["src/*"]
     }

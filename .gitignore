@@ -2,6 +2,9 @@ dist
 node_modules
 coverage
 
+tests/e2e/screenshots
+tests/e2e/videos
+
 src/static
 *.env
 secret.txt
