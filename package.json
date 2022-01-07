@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start:dev": "nodemon",
-    "start:prod": "set MODE=PROD && nodemon dist/app",
+    "start:prod": "set MODE=PROD && node dist/app",
     "test": "jest",
     "test:cov": "jest --coverage",
     "test:e2e": "cypress run",
@@ -74,6 +74,7 @@
     "cypress": "^9.2.0",
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.4.7",
     "nodemon": "^2.0.15",

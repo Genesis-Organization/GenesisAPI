@@ -63,8 +63,12 @@ class ScienceControllers {
     const science: string = req.query.science as string
     const branch: string = req.query.branch as string
 
-    const query = await SciencesServices.fetchSciences(science, branch)
-    res.status(200).json(query)
+    try {
+      const query = await SciencesServices.fetchSciences(science, branch)
+      res.status(200).json(query)
+    } catch (err) {
+      res.status(400).send(err)
+    }
   }
 }
 

@@ -11,7 +11,7 @@ class UsersController {
       const user = await UsersServices.getUserInfo(login)
       res.status(200).send(user)
     } catch (err) {
-      res.status(422).send(err)
+      res.status(400).send(err)
     }
   }
   async changeDescription(req: Request, res: Response) {
@@ -26,7 +26,7 @@ class UsersController {
       })
       res.status(200).send(newToken)
     } catch (err) {
-      res.status(403).send(err)
+      res.status(402).send(err)
     }
   }
   async changeInterests(req: Request, res: Response) {
@@ -41,7 +41,7 @@ class UsersController {
       })
       res.status(200).send(newToken)
     } catch (err) {
-      res.status(403).send(err)
+      res.status(402).send(err)
     }
   }
 }

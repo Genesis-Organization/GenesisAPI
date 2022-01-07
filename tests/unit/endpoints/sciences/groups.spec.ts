@@ -1,5 +1,4 @@
-import { expect, request } from '>>/globals'
-import createServer from '@/server'
+import { expect, describe, request, test, createServer } from '>>/globals'
 
 describe('GET sciences/groups', () => {
   test('should respond with a 200 status code', async () => {
