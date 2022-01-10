@@ -44,6 +44,21 @@ class UsersController {
       res.status(402).send(err)
     }
   }
+  async changeEducation(req: Request, res: Response) {
+    const login = req.params.id
+    const token = req.body.token
+    const education = req.body.education
+    try {
+      await jwt.verify(token, config.jwt.secret)
+      const newToken = await UsersServices.changeEducation(login, education)
+      res.cookie('jwt', newToken, {
+        maxAge: Number(config.jwt.expiresIn),
+      })
+      res.status(200).send(newToken)
+    } catch (err) {
+      res.status(402).send(err)
+    }
+  }
 }
 
 export default new UsersController()

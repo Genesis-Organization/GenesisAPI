@@ -1,6 +1,6 @@
 import UserModel from '@/database/models/users/user'
 import AuthServices from './auth'
-import { ResearchInterest, UserQueryResponse } from '@/types/user'
+import { ResearchInterest, University, UserQueryResponse } from '@/types/user'
 
 class UsersServices {
   async getUserInfo(login: string): Promise<UserQueryResponse | null> {
@@ -44,6 +44,13 @@ class UsersServices {
   async changeInterests(login: string, interests: ResearchInterest[]) {
     const user = await UserModel.findOne({ Login: login })
     user.researchInterests = interests
+    user.save()
+    const token = AuthServices.CreateToken(user)
+    return token
+  }
+  async changeEducation(login: string, education: University[]) {
+    const user = await UserModel.findOne({ Login: login })
+    user.education = education
     user.save()
     const token = AuthServices.CreateToken(user)
     return token
