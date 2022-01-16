@@ -1,8 +1,6 @@
-// Libs
 import 'module-alias/register'
 import 'reflect-metadata'
 
-// Imports
 import config from '@/config/server'
 import { log_start, log_end } from './logs'
 import createServer from './server'

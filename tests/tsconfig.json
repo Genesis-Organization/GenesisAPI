@@ -1,0 +1,7 @@
+{
+    "types": [
+        "node",
+        "cypress",
+        "jest",
+      ],
+}

@@ -5,7 +5,7 @@ export const log_start = () => {
     console.log(
       '\x1b[4m\n___________________________________________________\x1b[0m\n\n' +
         '\x1b[36m' +
-        'Genesis API v1.3.1 \x1b[0m\n' +
+        'Genesis API v1.4.1 \x1b[0m\n' +
         '\x1b[32m' +
         `Node: ${process.version} \x1b[0m\n` +
         'by: Mateusz Słotwiński\n'

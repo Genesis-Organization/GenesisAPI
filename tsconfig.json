@@ -11,12 +11,9 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "sourceMap": true,
-    "noEmit": true,
 
     "types": [
       "node",
-      "cypress",
-      "jest",
     ],
 
     "lib": ["es2018", "esnext.asynciterable"],

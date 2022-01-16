@@ -15,8 +15,6 @@ import {
 
 @modelOptions({ options: { allowMixed: Severity.ALLOW } })
 class User {
-  // REQUIRED
-
   @prop({ required: true })
   public Name!: string
 
@@ -37,8 +35,6 @@ class User {
 
   @prop({ required: true })
   public Password!: string
-
-  // DEFAULT
 
   @prop()
   public avatarFileID?: string
@@ -61,7 +57,6 @@ class User {
   @prop()
   public isSponsor?: boolean
 
-  // OPTIONAL
   @prop()
   public researchInterests?: ResearchInterest[]
 
