@@ -32,7 +32,7 @@ class UsersServices {
         socialMedias: user.socialMedias,
       }
       return safeUserData
-    } else return null
+    } else throw new Error('Invalid user data')
   }
   async changeDescription(login: string, description: string) {
     const user = await UserModel.findOne({ Login: login })
