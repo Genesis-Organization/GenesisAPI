@@ -59,6 +59,69 @@ class UsersController {
       res.status(402).send(err)
     }
   }
+  async changeName(req: Request, res: Response) {
+    const login = req.params.id
+
+    const name = req.body.name
+    const password = req.body.password
+    const token = req.body.token
+    const surname = req.body.surname
+    try {
+      await jwt.verify(token, config.jwt.secret)
+      const newToken = await UsersServices.changeName(
+        login,
+        password,
+        name,
+        surname
+      )
+      res.cookie('jwt', newToken, {
+        maxAge: Number(config.jwt.expiresIn),
+      })
+      res.status(200).send(newToken)
+    } catch (err) {
+      res.status(402).send(err)
+    }
+  }
+
+  async changeEmail(req: Request, res: Response) {
+    const login = req.params.id
+
+    const password = req.body.password
+    const token = req.body.token
+    const email = req.body.email
+    try {
+      await jwt.verify(token, config.jwt.secret)
+      const newToken = await UsersServices.changeEmail(login, password, email)
+      res.cookie('jwt', newToken, {
+        maxAge: Number(config.jwt.expiresIn),
+      })
+      res.status(200).send(newToken)
+    } catch (err) {
+      res.status(402).send(err)
+    }
+  }
+
+  async changeDateOfBirth(req: Request, res: Response) {
+    const login = req.params.id
+
+    const password = req.body.password
+    const token = req.body.token
+    const dateofbirth = req.body.dateofbirth
+    try {
+      await jwt.verify(token, config.jwt.secret)
+      const newToken = await UsersServices.changeDateOfBirth(
+        login,
+        password,
+        dateofbirth
+      )
+      res.cookie('jwt', newToken, {
+        maxAge: Number(config.jwt.expiresIn),
+      })
+      res.status(200).send(newToken)
+    } catch (err) {
+      res.status(402).send(err)
+    }
+  }
 }
 
 export default new UsersController()

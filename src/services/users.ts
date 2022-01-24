@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt'
+
 import UserModel from '@/database/models/users/user'
 import AuthServices from './auth'
 import { ResearchInterest, University, UserQueryResponse } from '@/types/user'
@@ -54,6 +56,51 @@ class UsersServices {
     user.save()
     const token = AuthServices.CreateToken(user)
     return token
+  }
+  async changeName(
+    login: string,
+    password: string,
+    name: string,
+    surname: string
+  ) {
+    const user = await UserModel.findOne({ Login: login })
+    const verify = await bcrypt.compare(password, user.Password)
+
+    if (user && verify) {
+      user.Name = name
+      user.Surname = surname
+      user.save()
+      const token = AuthServices.CreateToken(user)
+      return token
+    } else throw new Error('Invalid password')
+  }
+
+  async changeEmail(login: string, password: string, email: string) {
+    const user = await UserModel.findOne({ Login: login })
+    const verify = await bcrypt.compare(password, user.Password)
+
+    if (user && verify) {
+      user.Email = email
+      user.save()
+      const token = AuthServices.CreateToken(user)
+      return token
+    } else throw new Error('Invalid password')
+  }
+
+  async changeDateOfBirth(
+    login: string,
+    password: string,
+    dateofbirth: string
+  ) {
+    const user = await UserModel.findOne({ Login: login })
+    const verify = await bcrypt.compare(password, user.Password)
+
+    if (user && verify) {
+      user.DateOfBirth = dateofbirth
+      user.save()
+      const token = AuthServices.CreateToken(user)
+      return token
+    } else throw new Error('Invalid password')
   }
 }
 
