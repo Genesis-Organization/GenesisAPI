@@ -1,33 +1,39 @@
 import { Request, Response } from 'express'
 
-import SciencesServices from '@/services/sciences'
+import SciencesService from '@/services/sciences'
 
-class ScienceControllers {
-  async getGroups(req: Request, res: Response) {
+class ScienceController {
+  service: SciencesService
+
+  constructor() {
+    this.service = new SciencesService()
+  }
+
+  getGroups = async (req: Request, res: Response) => {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
-    const query = await SciencesServices.getGroups(filter, target)
+    const query = await this.service.getGroups(filter, target)
     res.status(200).json(query)
   }
 
-  async getSciences(req: Request, res: Response) {
+  getSciences = async (req: Request, res: Response) => {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
-    const query = await SciencesServices.getSciences(filter, target)
+    const query = await this.service.getSciences(filter, target)
     res.status(200).json(query)
   }
 
-  async getBranches(req: Request, res: Response) {
+  getBranches = async (req: Request, res: Response) => {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
-    const query = await SciencesServices.getBranches(filter, target)
+    const query = await this.service.getBranches(filter, target)
     res.status(200).json(query)
   }
 
-  // async getSubjects(req: Request, res: Response) {
+  // getSubjects = async (req: Request, res: Response) => {
   //   const filter: string = req.query.filter as string
   //   const target: string = req.query.target as string
 
@@ -35,7 +41,7 @@ class ScienceControllers {
   //   res.status(200).json(query)
   // }
 
-  // async getFormulas(req: Request, res: Response) {
+  // getFormulas = async (req: Request, res: Response) => {
   //   const filter: string = req.query.filter as string
   //   const target: string = req.query.target as string
 
@@ -43,28 +49,28 @@ class ScienceControllers {
   //   res.status(200).json(query)
   // }
 
-  async getSciencesObject(req: Request, res: Response) {
+  getSciencesObject = async (req: Request, res: Response) => {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
-    const query = await SciencesServices.getScienceObject(filter, target)
+    const query = await this.service.getScienceObject(filter, target)
     res.status(200).json(query)
   }
 
-  async getBranchesObject(req: Request, res: Response) {
+  getBranchesObject = async (req: Request, res: Response) => {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
-    const query = await SciencesServices.getBranchesObject(filter, target)
+    const query = await this.service.getBranchesObject(filter, target)
     res.status(200).json(query)
   }
 
-  async fetchSciences(req: Request, res: Response) {
+  fetchSciences = async (req: Request, res: Response) => {
     const science: string = req.query.science as string
     const branch: string = req.query.branch as string
 
     try {
-      const query = await SciencesServices.fetchSciences(science, branch)
+      const query = await this.service.fetchSciences(science, branch)
       res.status(200).json(query)
     } catch (err) {
       res.status(400).send(err)
@@ -72,4 +78,4 @@ class ScienceControllers {
   }
 }
 
-export default new ScienceControllers()
+export default new ScienceController()

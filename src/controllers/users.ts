@@ -2,25 +2,31 @@ import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 
 import config from '@/config/auth'
-import UsersServices from '@/services/users'
+import UsersService from '@/services/users'
 
 class UsersController {
-  async getUserInfo(req: Request, res: Response) {
+  service: UsersService
+
+  constructor() {
+    this.service = new UsersService()
+  }
+
+  getUserInfo = async (req: Request, res: Response) => {
     const login = req.params.id
     try {
-      const user = await UsersServices.getUserInfo(login)
+      const user = await this.service.getUserInfo(login)
       res.status(200).send(user)
     } catch (err) {
       res.status(400).send(err)
     }
   }
-  async changeDescription(req: Request, res: Response) {
+  changeDescription = async (req: Request, res: Response) => {
     const login = req.params.id
     const token = req.body.token
     const description = req.body.description
     try {
       await jwt.verify(token, config.jwt.secret)
-      const newToken = await UsersServices.changeDescription(login, description)
+      const newToken = await this.service.changeDescription(login, description)
       res.cookie('jwt', newToken, {
         maxAge: Number(config.jwt.expiresIn),
       })
@@ -29,13 +35,13 @@ class UsersController {
       res.status(402).send(err)
     }
   }
-  async changeInterests(req: Request, res: Response) {
+  changeInterests = async (req: Request, res: Response) => {
     const login = req.params.id
     const token = req.body.token
     const interests = req.body.interests
     try {
       await jwt.verify(token, config.jwt.secret)
-      const newToken = await UsersServices.changeInterests(login, interests)
+      const newToken = await this.service.changeInterests(login, interests)
       res.cookie('jwt', newToken, {
         maxAge: Number(config.jwt.expiresIn),
       })
@@ -44,13 +50,13 @@ class UsersController {
       res.status(402).send(err)
     }
   }
-  async changeEducation(req: Request, res: Response) {
+  changeEducation = async (req: Request, res: Response) => {
     const login = req.params.id
     const token = req.body.token
     const education = req.body.education
     try {
       await jwt.verify(token, config.jwt.secret)
-      const newToken = await UsersServices.changeEducation(login, education)
+      const newToken = await this.service.changeEducation(login, education)
       res.cookie('jwt', newToken, {
         maxAge: Number(config.jwt.expiresIn),
       })
@@ -59,7 +65,7 @@ class UsersController {
       res.status(402).send(err)
     }
   }
-  async changeName(req: Request, res: Response) {
+  changeName = async (req: Request, res: Response) => {
     const login = req.params.id
 
     const name = req.body.name
@@ -68,7 +74,7 @@ class UsersController {
     const surname = req.body.surname
     try {
       await jwt.verify(token, config.jwt.secret)
-      const newToken = await UsersServices.changeName(
+      const newToken = await this.service.changeName(
         login,
         password,
         name,
@@ -83,7 +89,7 @@ class UsersController {
     }
   }
 
-  async changeEmail(req: Request, res: Response) {
+  changeEmail = async (req: Request, res: Response) => {
     const login = req.params.id
 
     const password = req.body.password
@@ -91,7 +97,7 @@ class UsersController {
     const email = req.body.email
     try {
       await jwt.verify(token, config.jwt.secret)
-      const newToken = await UsersServices.changeEmail(login, password, email)
+      const newToken = await this.service.changeEmail(login, password, email)
       res.cookie('jwt', newToken, {
         maxAge: Number(config.jwt.expiresIn),
       })
@@ -101,7 +107,7 @@ class UsersController {
     }
   }
 
-  async changeDateOfBirth(req: Request, res: Response) {
+  changeDateOfBirth = async (req: Request, res: Response) => {
     const login = req.params.id
 
     const password = req.body.password
@@ -109,7 +115,7 @@ class UsersController {
     const dateofbirth = req.body.dateofbirth
     try {
       await jwt.verify(token, config.jwt.secret)
-      const newToken = await UsersServices.changeDateOfBirth(
+      const newToken = await this.service.changeDateOfBirth(
         login,
         password,
         dateofbirth

@@ -4,8 +4,8 @@ import config from '@/config/auth'
 import UserModel from '@/database/models/users/user'
 import { UserLoginReq, UserRegisterReq } from '@/types/auth'
 
-class AuthServices {
-  async Validate(userData: UserRegisterReq) {
+class AuthService {
+  Validate = async (userData: UserRegisterReq) => {
     const existsLogin = await UserModel.exists({ Login: userData.Login })
     const existsEmail = await UserModel.exists({ Email: userData.Email })
     if (existsLogin === false) {
@@ -18,7 +18,8 @@ class AuthServices {
       throw new Error('user-exist')
     }
   }
-  async Register(userData: UserRegisterReq) {
+
+  Register = async (userData: UserRegisterReq) => {
     try {
       const isValid = await this.Validate(userData)
       if (isValid === true) {
@@ -33,7 +34,8 @@ class AuthServices {
       throw new Error(e)
     }
   }
-  async Login(loginReq: UserLoginReq) {
+
+  Login = async (loginReq: UserLoginReq) => {
     const user = await UserModel.findOne({
       Login: loginReq.Login,
     })
@@ -51,11 +53,11 @@ class AuthServices {
       throw new Error('wrong-data')
     }
   }
-  async CreateToken(user: string | object) {
+  CreateToken(user: string | object) {
     return jwt.sign({ user }, config.jwt.secret, {
       expiresIn: config.jwt.expiresIn,
     })
   }
 }
 
-export default new AuthServices()
+export default AuthService

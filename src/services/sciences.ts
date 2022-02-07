@@ -13,8 +13,8 @@ import BranchModel from '@/database/models/sciences/branch'
 import SubjectModel from '@/database/models/sciences/subject'
 import FormulaModel from '@/database/models/sciences/formula'
 
-class SciencesServices {
-  async getGroups(filter?: string, target?: string): Promise<Group[]> {
+class SciencesService {
+  getGroups = async (filter?: string, target?: string): Promise<Group[]> => {
     if (filter && target) {
       const response = await GroupModel.find().where(target).equals(filter)
       return response
@@ -23,7 +23,10 @@ class SciencesServices {
       return response
     }
   }
-  async getSciences(filter?: string, target?: string): Promise<Science[]> {
+  getSciences = async (
+    filter?: string,
+    target?: string
+  ): Promise<Science[]> => {
     if (filter && target) {
       const response = await ScienceModel.find({}).where(target).equals(filter)
       return response
@@ -32,10 +35,10 @@ class SciencesServices {
       return response
     }
   }
-  async getBranches(
+  getBranches = async (
     filter?: string,
     target?: string
-  ): Promise<(Branch & { _id: string })[]> {
+  ): Promise<(Branch & { _id: string })[]> => {
     if (filter && target) {
       const response = await BranchModel.find({}).where(target).equals(filter)
       return response
@@ -44,7 +47,7 @@ class SciencesServices {
       return response
     }
   }
-  // async getSubjects(filter?: string, target?: string) {
+  // getSubjects(filter?: string, target?: string) {
   //   if (filter && target) {
   //     const response = await SubjectModel.find({}).where(target).equals(filter)
   //     return response
@@ -53,7 +56,7 @@ class SciencesServices {
   //     return response
   //   }
   // }
-  // async getFormulas(filter?: string, target?: string) {
+  // getFormulas(filter?: string, target?: string) {
   //   if (filter && target) {
   //     const response = await FormulaModel.find({}).where(target).equals(filter)
   //     return response
@@ -63,10 +66,10 @@ class SciencesServices {
   //   }
   // }
 
-  async getScienceObject(
+  getScienceObject = async (
     filter?: string,
     target?: string
-  ): Promise<ScienceObject[]> {
+  ): Promise<ScienceObject[]> => {
     let sciences
 
     if (filter && target) {
@@ -93,10 +96,10 @@ class SciencesServices {
     return scienceObjArray
   }
 
-  async getBranchesObject(
+  getBranchesObject = async (
     filter?: string,
     target?: string
-  ): Promise<BranchObject[]> {
+  ): Promise<BranchObject[]> => {
     let branches
 
     if (filter && target) {
@@ -131,10 +134,10 @@ class SciencesServices {
     return branchesObjArray
   }
 
-  async fetchSciences(
+  fetchSciences = async (
     science: string,
     branch: string
-  ): Promise<BranchObject | null> {
+  ): Promise<BranchObject | null> => {
     // DB Queries
     const scienceObj = await ScienceModel.findOne({
       ScienceName: science,
@@ -183,4 +186,4 @@ class SciencesServices {
   }
 }
 
-export default new SciencesServices()
+export default SciencesService
