@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 
 import config from '@/config/auth'
 import UsersService from '@/services/users'
+import { UseAuthorization } from '@/middlewares/auth'
 
 class UsersController {
   service: UsersService
@@ -12,7 +13,7 @@ class UsersController {
   }
 
   getUserInfo = async (req: Request, res: Response) => {
-    const login = req.params.id
+    const login = req.params.login
     try {
       const user = await this.service.getUserInfo(login)
       res.status(200).send(user)
@@ -20,8 +21,10 @@ class UsersController {
       res.status(400).send(err)
     }
   }
-  changeDescription = async (req: Request, res: Response) => {
-    const login = req.params.id
+
+  @UseAuthorization()
+  async changeDescription(req: Request, res: Response) {
+    const login = req.params.login
     const token = req.body.token
     const description = req.body.description
     try {
@@ -36,7 +39,7 @@ class UsersController {
     }
   }
   changeInterests = async (req: Request, res: Response) => {
-    const login = req.params.id
+    const login = req.params.login
     const token = req.body.token
     const interests = req.body.interests
     try {
@@ -51,7 +54,7 @@ class UsersController {
     }
   }
   changeEducation = async (req: Request, res: Response) => {
-    const login = req.params.id
+    const login = req.params.login
     const token = req.body.token
     const education = req.body.education
     try {
@@ -66,7 +69,7 @@ class UsersController {
     }
   }
   changeName = async (req: Request, res: Response) => {
-    const login = req.params.id
+    const login = req.params.login
 
     const name = req.body.name
     const password = req.body.password
@@ -90,7 +93,7 @@ class UsersController {
   }
 
   changeEmail = async (req: Request, res: Response) => {
-    const login = req.params.id
+    const login = req.params.login
 
     const password = req.body.password
     const token = req.body.token
@@ -108,7 +111,7 @@ class UsersController {
   }
 
   changeDateOfBirth = async (req: Request, res: Response) => {
-    const login = req.params.id
+    const login = req.params.login
 
     const password = req.body.password
     const token = req.body.token

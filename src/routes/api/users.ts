@@ -4,13 +4,13 @@ import UsersControllers from '@/controllers/Users'
 const UsersRouter: Router = Router()
 
 // eslint-disable-next-line
-UsersRouter.get('/:id', UsersControllers.getUserInfo)
-  .put('/:id/desc', UsersControllers.changeDescription)
-  .put('/:id/interests', UsersControllers.changeInterests)
-  .put('/:id/education', UsersControllers.changeEducation)
-  .put('/:id/name', UsersControllers.changeName)
-  .put('/:id/email', UsersControllers.changeEmail)
-  .put('/:id/dateofbirth', UsersControllers.changeDateOfBirth)
-// .put('/:id/password', UsersControllers.changePassword)
+UsersRouter.get('/:login', UsersControllers.getUserInfo)
+  .put('/:login/desc', UsersControllers.changeDescription)
+  .put('/:login/interests', UsersControllers.changeInterests)
+  .put('/:login/education', UsersControllers.changeEducation)
+  .put('/:login/name', UsersControllers.changeName)
+  .put('/:login/email', UsersControllers.changeEmail)
+  .put('/:login/dateofbirth', UsersControllers.changeDateOfBirth)
+// .put('/:login/password', UsersControllers.changePassword)
 
 export default UsersRouter
