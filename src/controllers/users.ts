@@ -12,7 +12,7 @@ class UsersController {
     this.service = new UsersService()
   }
 
-  getUserInfo = async (req: Request, res: Response) => {
+  async getUserInfo(req: Request, res: Response) {
     const login = req.params.login
     try {
       const user = await this.service.getUserInfo(login)
@@ -38,7 +38,7 @@ class UsersController {
       res.status(402).send(err)
     }
   }
-  changeInterests = async (req: Request, res: Response) => {
+  async changeInterests(req: Request, res: Response) {
     const login = req.params.login
     const token = req.body.token
     const interests = req.body.interests
@@ -53,7 +53,7 @@ class UsersController {
       res.status(402).send(err)
     }
   }
-  changeEducation = async (req: Request, res: Response) => {
+  async changeEducation(req: Request, res: Response) {
     const login = req.params.login
     const token = req.body.token
     const education = req.body.education
@@ -68,7 +68,7 @@ class UsersController {
       res.status(402).send(err)
     }
   }
-  changeName = async (req: Request, res: Response) => {
+  async changeName(req: Request, res: Response) {
     const login = req.params.login
 
     const name = req.body.name
@@ -92,7 +92,7 @@ class UsersController {
     }
   }
 
-  changeEmail = async (req: Request, res: Response) => {
+  async changeEmail(req: Request, res: Response) {
     const login = req.params.login
 
     const password = req.body.password
@@ -110,7 +110,7 @@ class UsersController {
     }
   }
 
-  changeDateOfBirth = async (req: Request, res: Response) => {
+  async changeDateOfBirth(req: Request, res: Response) {
     const login = req.params.login
 
     const password = req.body.password

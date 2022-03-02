@@ -9,7 +9,7 @@ class ScienceController {
     this.service = new SciencesService()
   }
 
-  getGroups = async (req: Request, res: Response) => {
+  async getGroups(req: Request, res: Response) {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
@@ -17,7 +17,7 @@ class ScienceController {
     res.status(200).json(query)
   }
 
-  getSciences = async (req: Request, res: Response) => {
+  async getSciences(req: Request, res: Response) {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
@@ -25,7 +25,7 @@ class ScienceController {
     res.status(200).json(query)
   }
 
-  getBranches = async (req: Request, res: Response) => {
+  async getBranches(req: Request, res: Response) {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
@@ -49,7 +49,7 @@ class ScienceController {
   //   res.status(200).json(query)
   // }
 
-  getSciencesObject = async (req: Request, res: Response) => {
+  async getSciencesObject(req: Request, res: Response) {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
@@ -57,7 +57,7 @@ class ScienceController {
     res.status(200).json(query)
   }
 
-  getBranchesObject = async (req: Request, res: Response) => {
+  async getBranchesObject(req: Request, res: Response) {
     const filter: string = req.query.filter as string
     const target: string = req.query.target as string
 
@@ -65,7 +65,7 @@ class ScienceController {
     res.status(200).json(query)
   }
 
-  fetchSciences = async (req: Request, res: Response) => {
+  async fetchSciences(req: Request, res: Response) {
     const science: string = req.query.science as string
     const branch: string = req.query.branch as string
 
